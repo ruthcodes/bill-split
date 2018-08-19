@@ -1,0 +1,47 @@
+.App {
+
+}
+
+h1{
+  text-align: center;
+  margin-bottom: 20px !important;
+}
+body{
+  padding: 20px;
+
+}
+p{
+  margin-bottom: 20px !important;
+}
+
+.uploadedImage{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.receiptText{
+  background-color: orange;
+  opacity: 0.5;
+  font-size: 12px;
+}
+
+.claimed{
+  color: purple !important;
+}
+
+.receiptPrint{
+  position: relative;
+
+}
+
+.userControls{
+  text-align: center;
+
+}
+
+.runningTotal{
+  text-align: center;
+  border: 1px solid black;
+  list-style-type: none;
+}
