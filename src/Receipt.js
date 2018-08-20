@@ -24,6 +24,7 @@ export default class Receipt extends Component{
     let tops = res.map((word) => {
       let line = word.Words;
       //assign first Top/Left/Height/Width as biggest, then check each against it finally returning the largest result
+      //got idea for efficient reduce from https://codeburst.io/javascript-finding-minimum-and-maximum-values-in-an-array-of-objects-329c5c7e22a2
       return line.reduce((max, p) => p[attr] > max ? p[attr] : max, line[0][attr])
     })
     // find the largest from that compiled array (which is largest of all the sub arrays)
