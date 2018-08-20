@@ -16,6 +16,7 @@ class App extends Component {
     prices: [],
     divideBy: 1,
     divideBool: false,
+    tip:0,
   }
 
   handleClick = (e) => {
@@ -24,7 +25,7 @@ class App extends Component {
     if(Number(price)){
       if (this.state.divideBool){
         this.setState({
-          prices: [...this.state.prices, parseFloat(price, 10)/this.state.divideBy.toFixed(2)]
+          prices: [...this.state.prices, (parseFloat(price, 10)/this.state.divideBy).toFixed(2)]
         })
       } else {
         this.setState({
@@ -54,6 +55,7 @@ class App extends Component {
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === 4) {
         let obj = JSON.parse(this.responseText)
+        //console.log(this.responseText)
         self.setState({
           response: obj.ParsedResults[0].TextOverlay.Lines,//obj.ParsedResults[0].ParsedText,
         })
@@ -92,6 +94,14 @@ class App extends Component {
     })
   }
 
+  addTip = (e) => {
+    let percent = e.target.getAttribute('data-value');
+    console.log(percent)
+    this.setState({
+      tip: percent,
+    })
+  }
+
 
   render() {
     return (
@@ -113,10 +123,10 @@ class App extends Component {
           </div>
           <div className="userControls col-sm-12 col-md-6">
             <Divide divideBy={this.state.divideBy} handleDivideChange={this.handleDivideChange} toggleDivideBool={this.toggleDivideBool}/>
-            <TaxAndTip />
+            <TaxAndTip addTip={this.addTip} />
           </div>
         </div>
-        <Receipt response={this.state.response} prices={this.state.prices} handleClick={this.handleClick}/>
+        <Receipt tip={this.state.tip} response={this.state.response} prices={this.state.prices} handleClick={this.handleClick}/>
       </div>
     );
   }
