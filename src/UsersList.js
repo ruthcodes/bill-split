@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 export default class UsersList extends Component{
   render(){
     return (
-      <div className="userControls">
+      <ul className="runningTotal">
+        <p>Your running total:</p>
         {
-          this.props.prices.map((price) => {
-            return <li>{price}</li>
+          this.props.prices.map((price, i) => {
+            return <li key={i}>{price}</li>
           })
         }
-      </div>
+      </ul>
     )
   }
 }

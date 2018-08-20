@@ -32,16 +32,18 @@ p{
 
 .receiptPrint{
   position: relative;
+  border: 1px solid black;
 
 }
 
 .userControls{
   text-align: center;
-
+  margin-top: 10px;
 }
 
 .runningTotal{
   text-align: center;
-  border: 1px solid black;
   list-style-type: none;
+  margin: 5px;
+  padding: 0;
 }
