@@ -13,7 +13,7 @@ export default class Receipt extends Component{
 
   receiptStyle = () => {
     return {
-      height: this.state.largestTop,
+      height: this.state.largestTop + 10,
       width: this.state.largestLeft,
     }
   }
@@ -49,30 +49,32 @@ export default class Receipt extends Component{
   render() {
     return (
       <div className="row">
-        <div style={this.receiptStyle()} className="receiptPrint col-sm-12 col-md-6">
-          {this.props.response.map((words) => {
-            let line = words.Words;
-            return line.map((text, i) => {
-              let pStyle = {
-                position: 'absolute',
-                top: text.Top,
-                left: text.Left,
-                height: text.Height,
-                width: text.Width,
-                color: '',
-                background: "white",
-                opacity: 1
-              };
-              if (Number(text.WordText) && text.Left > 20){
-                pStyle.color = "blue";
-                pStyle.background = "orange";
-                pStyle.opacity = 0.5
-              } else {
-                pStyle.color = "black";
-              }
-              return <p className="receiptText" style={pStyle} key={i} onClick={this.props.handleClick} data-value={text.WordText}>{text.WordText}</p>
-            })
-          })}
+        <div className="col-sm-12 col-md-6 order-last order-md-0">
+          <div style={this.receiptStyle()} className="receiptPrint">
+            {this.props.response.map((words) => {
+              let line = words.Words;
+              return line.map((text, i) => {
+                let pStyle = {
+                  position: 'absolute',
+                  top: text.Top,
+                  left: text.Left,
+                  height: text.Height,
+                  width: text.Width,
+                  color: '',
+                  background: "white",
+                  opacity: 1
+                };
+                if (Number(text.WordText) && text.Left > 20){
+                  pStyle.color = "blue";
+                  pStyle.background = "orange";
+                  pStyle.opacity = 0.5
+                } else {
+                  pStyle.color = "black";
+                }
+                return <p className="receiptText" style={pStyle} key={i} onClick={this.props.handleClick} data-value={text.WordText}>{text.WordText}</p>
+              })
+            })}
+          </div>
         </div>
         <div className="col-md-6 col-sm-12">
           <UsersList prices={this.props.prices}/>
